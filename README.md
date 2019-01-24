@@ -4,7 +4,7 @@ truewallet
 [![Build Status](https://travis-ci.org/rayriffy/truewallet.svg?branch=master)](https://travis-ci.org/rayriffy/truewallet)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/89a51596e35441998bee1025c0363143)](https://www.codacy.com/app/rayriffy/truewallet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=rayriffy/truewallet&amp;utm_campaign=Badge_Grade)
 [![npm](https://img.shields.io/npm/v/truewallet.svg)](https://www.npmjs.com/package/truewallet)
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+[![Javascript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 True Wallet API for JS
