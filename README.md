@@ -6,7 +6,7 @@ truewallet
 [![npm](https://img.shields.io/npm/v/truewallet.svg)](https://www.npmjs.com/package/truewallet)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-True Wallet API for JS
+Promise-based True Wallet API for JS
 
 Install
 -------
@@ -21,106 +21,116 @@ Examples
 ### Login and Logout
 
 ```javascript
-const truewallet = require('truewallet')
+const truewallet = require('truewallet');
 
-// Get token with email and password
-var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+;(async () => {
+  // Get token with email and password
+  var token = await truewallet.get.token('example@example.com', 'p4ssw0rd')
 
-// Logout
-truewallet.logout(token)
+  // Logout
+  await truewallet.logout(token)
+})()
 ```
 
 ### Check balance
 
 ```javascript
-const truewallet = require('truewallet')
+const truewallet = require('truewallet');
 
-// Get token with email and password
-var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+;(async () => {
+  // Get token with email and password
+  var token = await truewallet.get.token('example@example.com', 'p4ssw0rd')
 
-// Check scuccessfully login
-if(token !== null) {
-  var profile = truewallet.get.profle(token)
-  console.log(profile)
+  // Check scuccessfully login
+  if(token !== null) {
+    var profile = await truewallet.get.profle(token)
+    console.log(profile)
 
-  // Logout
-  truewallet.logout(token)
-}
+    // Logout
+    await truewallet.logout(token)
+  }
+})()
 ```
 
 ### Topup TrueMoney Cashcard
 
 ```javascript
-const truewallet = require('truewallet')
+const truewallet = require('truewallet');
 
-// Get token with email and password
-var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+;(async () => {
+  // Get token with email and password
+  var token = await truewallet.get.token('example@example.com', 'p4ssw0rd')
 
-// Check scuccessfully login
-if(token !== null) {
-  var topup = truewallet.cashcard.topup(token, '00000000000000')
+  // Check scuccessfully login
+  if(token !== null) {
+    var topup = await truewallet.cashcard.topup(token, '00000000000000')
 
-  // Logout
-  truewallet.logout(token)
-}
+    // Logout
+    await truewallet.logout(token)
+  }
+})()
 ```
 
 ### Fetch Tx
 
 ```javascript
-const moment = require('moment')
-const truewallet = require('truewallet')
+const moment = require('moment');
+const truewallet = require('truewallet');
 
-// Get token with email and password
-var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+;(async () => {
+  // Get token with email and password
+  var token = await truewallet.get.token('example@example.com', 'p4ssw0rd')
 
-// Check scuccessfully login
-if(token !== null) {
-  var startDate= moment().subtract(1, 'days').format('YYYY-MM-DD')
-  var endDate= moment().add(1, 'days').format('YYYY-MM-DD')
+  // Check scuccessfully login
+  if(token !== null) {
+    var startDate= moment().subtract(1, 'days').format('YYYY-MM-DD')
+    var endDate= moment().add(1, 'days').format('YYYY-MM-DD')
 
-  var activities = truewallet.fetch.activity(token, startDate, endDate)
-  console.log(activities)
+    var activities = await truewallet.fetch.activity(token, startDate, endDate)
+    console.log(activities)
 
-  // Logout
-  truewallet.logout(token)
-}
+    // Logout
+    await truewallet.logout(token)
+  }
+})()
 ```
 
 ### Get Tx detailes by ID
 
 ```javascript
-const moment = require('moment')
-const truewallet = require('truewallet')
+const moment = require('moment');
+const truewallet = require('truewallet');
 
-// Get token with email and password
-var token = truewallet.get.token('example@example.com', 'p4ssw0rd')
+(async () => {
+  // Get token with email and password
+  var token = await truewallet.get.token('example@example.com', 'p4ssw0rd')
 
-// Check scuccessfully login
-if(token !== null) {
-  var startDate= moment().subtract(1, 'days').format('YYYY-MM-DD')
-  var endDate= moment().add(1, 'days').format('YYYY-MM-DD')
+  // Check scuccessfully login
+  if(token !== null) {
+    var startDate= moment().subtract(1, 'days').format('YYYY-MM-DD')
+    var endDate= moment().add(1, 'days').format('YYYY-MM-DD')
 
-  var activities = truewallet.fetch.activity(token, startDate, endDate)
+    var activities = await truewallet.fetch.activity(token, startDate, endDate)
 
-  activities.forEach(function(activity) {
-    if(activity.original_action === 'creditor') {
-      var data = truewallet.fetch.txDetail(token, data.report_id)
+    activities.forEach(function(activity) {
+      if(activity.original_action === 'creditor') {
+        var data = await truewallet.fetch.txDetail(token, data.report_id)
 
-      // Tx ID
-      var txId = data.section4.column2.cell1.value
+        // Tx ID
+        var txId = data.section4.column2.cell1.value
 
-      // Value
-      var txValue = data.section3.column1.cell1.value.replace(',', '')
+        // Value
+        var txValue = data.section3.column1.cell1.value.replace(',', '')
 
-      console.log(txId)
-      console.log(txValue)
-    }
-  })
+        console.log(txId)
+        console.log(txValue)
+      }
+    })
 
-  // Logout
-  truewallet.logout(token)
-}
+    // Logout
+    await truewallet.logout(token)
+  }
+})()
 ```
 
 Contributing
