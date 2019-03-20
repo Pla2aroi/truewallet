@@ -44,7 +44,7 @@ const truewallet = require('truewallet');
 
   // Check scuccessfully login
   if(token !== null) {
-    var profile = await truewallet.get.profle(token)
+    var profile = await truewallet.get.balance(token)
     console.log(profile)
 
     // Logout
