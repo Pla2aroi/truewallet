@@ -1,0 +1,5 @@
+src/
+.eslintrc.json
+.prettierrc
+.travis.yml
+.vscode
